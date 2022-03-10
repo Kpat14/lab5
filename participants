@@ -1,0 +1,448 @@
+package lab5;
+
+
+public class Participant {
+    // TODO: implement this class
+    private String studentName;
+    private Registration first;
+    private int marks=0;
+    private Registration[] registrationsListEmpty={};
+    private Registration[] registrationsListFive= new Registration[5];
+    int numberOfRegistrations=0;
+    private String[] registrationString={"","","","",""};
+    private Registration[] defaultList;
+
+    public void updateMarks(String courseName, int marksPercent) {
+        Registration[] finalList = new Registration[numberOfRegistrations];
+        for(int i=0;i<numberOfRegistrations;i++){
+            finalList[i]=registrationsListFive[i];
+        }
+        for(int i=0;i< finalList.length;i++){
+            if(finalList[i].getTitle().equals(courseName)){
+                finalList[i].setMarks(marksPercent);
+            }
+        }
+    }
+    public int marksOf(String courseName) {
+        int a = 0;
+
+        Registration[] finalList = new Registration[numberOfRegistrations];
+        for(int i=0;i<numberOfRegistrations;i++){
+            finalList[i]=registrationsListFive[i];
+        }
+
+        for (int i = 0; i < finalList.length; i++) {
+            if ((finalList[i].getTitle()).equals(courseName)) {
+                a = 1;
+                return finalList[i].getMarks();
+            }
+        }
+            return -1;
+    }
+
+    public Participant(String name) {
+        studentName=name;
+
+    }
+
+
+    public Registration[] getRegistrations() {
+        if(registrationsListFive[0] == null){
+            return registrationsListEmpty;
+        }
+        Registration[] finalList = new Registration[numberOfRegistrations];
+        for(int i=0;i<numberOfRegistrations;i++){
+            finalList[i]=registrationsListFive[i];
+        }
+        return finalList;
+    }
+
+
+    public String getGPAReport() {
+        String report="";
+        Registration[] finalList = new Registration[numberOfRegistrations];
+        for(int i=0;i<numberOfRegistrations;i++){
+            finalList[i]=registrationsListFive[i];
+        }
+
+        if(numberOfRegistrations==0){
+            return "No GPA available yet for " + studentName ;
+        }
+        if(finalList.length == 1){
+            String one="";
+            int gradePoint=0;
+            int percentagemark = finalList[0].getMarks();
+            if(percentagemark>=90 && percentagemark<=100){
+                one = "A+";
+                gradePoint=9;
+            }else if(percentagemark>=80 && percentagemark<=89){
+                one = "A";
+                gradePoint=8;
+            } else if(percentagemark>=70 && percentagemark<=79){
+                one = "B";
+                gradePoint=7;
+            } else if(percentagemark>=60 && percentagemark<=69){
+                one = "C";
+                gradePoint=6;
+            } else if(percentagemark>=50 && percentagemark<=59){
+                one = "D";
+                gradePoint=5;
+            }else if(percentagemark>=0 && percentagemark<=49){
+                one = "F";
+                gradePoint=0;
+            }
+            double average = Math.round(gradePoint*10)/(double)10;
+            report = studentName +"'s GPA of {" + gradePoint +" ("+one+")}: "+average;
+        }else if(finalList.length==2){
+            String one="";
+            String two="";
+            int gradePointone=0;
+            int gradePointtwo=0;
+            int percentagemarkone = finalList[0].getMarks();
+            int percentagemarktwo = finalList[1].getMarks();
+            if(percentagemarkone>=90 && percentagemarkone<=100){
+                one = "A+";
+                gradePointone=9;
+            }else if(percentagemarkone>=80 && percentagemarkone<=89){
+                one = "A";
+                gradePointone=8;
+            } else if(percentagemarkone>=70 && percentagemarkone<=79){
+                one = "B";
+                gradePointone=7;
+            } else if(percentagemarkone>=60 && percentagemarkone<=69){
+                one = "C";
+                gradePointone=6;
+            } else if(percentagemarkone>=50 && percentagemarkone<=59){
+                one = "D";
+                gradePointone=5;
+            }else if(percentagemarkone>=0 && percentagemarkone<=49){
+                one = "F";
+                gradePointone=0;
+            }
+            if(percentagemarktwo>=90 && percentagemarktwo<=100){
+                two = "A+";
+                gradePointtwo=9;
+            }else if(percentagemarktwo>=80 && percentagemarktwo<=89){
+                two = "A";
+                gradePointtwo=8;
+            } else if(percentagemarktwo>=70 && percentagemarktwo<=79){
+                two = "B";
+                gradePointtwo=7;
+            } else if(percentagemarktwo>=60 && percentagemarktwo<=69){
+                two = "C";
+                gradePointtwo=6;
+            } else if(percentagemarktwo>=50 && percentagemarktwo<=59){
+                two = "D";
+                gradePointtwo=5;
+            }else if(percentagemarktwo>=0 && percentagemarktwo<=49){
+                two = "F";
+                gradePointtwo=0;
+            }
+            double average = (gradePointone + gradePointtwo)/ (double)2;
+            average = Math.round(average*10)/(double)10;
+            report = studentName +"'s GPA of {" + gradePointone +" ("+one+"), "+gradePointtwo+" ("+two+")}: "+ average;
+        }else if(finalList.length==3){
+            String one="";
+            String two="";
+            String three="";
+            int gradePointone=0;
+            int gradePointtwo=0;
+            int gradePointthree=0;
+            int percentagemarkone = finalList[0].getMarks();
+            int percentagemarktwo = finalList[1].getMarks();
+            int percentragemarkthree = finalList[2].getMarks();
+            if(percentagemarkone>=90 && percentagemarkone<=100){
+                one = "A+";
+                gradePointone=9;
+            }else if(percentagemarkone>=80 && percentagemarkone<=89){
+                one = "A";
+                gradePointone=8;
+            } else if(percentagemarkone>=70 && percentagemarkone<=79){
+                one = "B";
+                gradePointone=7;
+            } else if(percentagemarkone>=60 && percentagemarkone<=69){
+                one = "C";
+                gradePointone=6;
+            } else if(percentagemarkone>=50 && percentagemarkone<=59){
+                one = "D";
+                gradePointone=5;
+            }else if(percentagemarkone>=0 && percentagemarkone<=49){
+                one = "F";
+                gradePointone=0;
+            }
+            if(percentagemarktwo>=90 && percentagemarktwo<=100){
+                two = "A+";
+                gradePointtwo=9;
+            }else if(percentagemarktwo>=80 && percentagemarktwo<=89){
+                two = "A";
+                gradePointtwo=8;
+            } else if(percentagemarktwo>=70 && percentagemarktwo<=79){
+                two = "B";
+                gradePointtwo=7;
+            } else if(percentagemarktwo>=60 && percentagemarktwo<=69){
+                two = "C";
+                gradePointtwo=6;
+            } else if(percentagemarktwo>=50 && percentagemarktwo<=59){
+                two = "D";
+                gradePointtwo=5;
+            }else if(percentagemarktwo>=0 && percentagemarktwo<=49){
+                two = "F";
+                gradePointtwo=0;
+            }
+            if(percentragemarkthree>=90 && percentragemarkthree<=100){
+                three = "A+";
+                gradePointthree=9;
+            }else if(percentragemarkthree>=80 && percentragemarkthree<=89){
+                three = "A";
+                gradePointthree=8;
+            } else if(percentragemarkthree>=70 && percentragemarkthree<=79){
+                three = "B";
+                gradePointthree=7;
+            } else if(percentragemarkthree>=60 && percentragemarkthree<=69){
+                three = "C";
+                gradePointthree=6;
+            } else if(percentragemarkthree>=50 && percentragemarkthree<=59){
+                three = "D";
+                gradePointthree=5;
+            }else if(percentragemarkthree>=0 && percentragemarkthree<=49){
+                three = "F";
+                gradePointthree=0;
+            }
+            double average = (gradePointone + gradePointtwo + gradePointthree)/(double)3;
+            average = Math.round(average*10)/(double)10;
+            report = studentName +"'s GPA of {" + gradePointone +" ("+one+"), "+gradePointtwo+" ("+two+"), "+gradePointthree+" ("+three+")}: "+average;
+        }else if(finalList.length==4){
+            String one="";
+            String two="";
+            String three="";
+            String four="";
+            int gradePointone=0;
+            int gradePointtwo=0;
+            int gradePointthree=0;
+            int gradePointfour=0;
+            int percentagemarkone = finalList[0].getMarks();
+            int percentagemarktwo = finalList[1].getMarks();
+            int percentragemarkthree = finalList[2].getMarks();
+            int percentagemarkfour = finalList[3].getMarks();
+            if(percentagemarkone>=90 && percentagemarkone<=100){
+                one = "A+";
+                gradePointone=9;
+            }else if(percentagemarkone>=80 && percentagemarkone<=89){
+                one = "A";
+                gradePointone=8;
+            } else if(percentagemarkone>=70 && percentagemarkone<=79){
+                one = "B";
+                gradePointone=7;
+            } else if(percentagemarkone>=60 && percentagemarkone<=69){
+                one = "C";
+                gradePointone=6;
+            } else if(percentagemarkone>=50 && percentagemarkone<=59){
+                one = "D";
+                gradePointone=5;
+            }else if(percentagemarkone>=0 && percentagemarkone<=49){
+                one = "F";
+                gradePointone=0;
+            }
+            if(percentagemarktwo>=90 && percentagemarktwo<=100){
+                two = "A+";
+                gradePointtwo=9;
+            }else if(percentagemarktwo>=80 && percentagemarktwo<=89){
+                two = "A";
+                gradePointtwo=8;
+            } else if(percentagemarktwo>=70 && percentagemarktwo<=79){
+                two = "B";
+                gradePointtwo=7;
+            } else if(percentagemarktwo>=60 && percentagemarktwo<=69){
+                two = "C";
+                gradePointtwo=6;
+            } else if(percentagemarktwo>=50 && percentagemarktwo<=59){
+                two = "D";
+                gradePointtwo=5;
+            }else if(percentagemarktwo>=0 && percentagemarktwo<=49){
+                two = "F";
+                gradePointtwo=0;
+            }
+            if(percentragemarkthree>=90 && percentragemarkthree<=100){
+                three = "A+";
+                gradePointthree=9;
+            }else if(percentragemarkthree>=80 && percentragemarkthree<=89){
+                three = "A";
+                gradePointthree=8;
+            } else if(percentragemarkthree>=70 && percentragemarkthree<=79){
+                three = "B";
+                gradePointthree=7;
+            } else if(percentragemarkthree>=60 && percentragemarkthree<=69){
+                three = "C";
+                gradePointthree=6;
+            } else if(percentragemarkthree>=50 && percentragemarkthree<=59){
+                three = "D";
+                gradePointthree=5;
+            }else if(percentragemarkthree>=0 && percentragemarkthree<=49){
+                three = "F";
+                gradePointthree=0;
+            }
+            if(percentagemarkfour>=90 && percentagemarkfour<=100){
+                four = "A+";
+                gradePointfour=9;
+            }else if(percentagemarkfour>=80 && percentagemarkfour<=89){
+                four = "A";
+                gradePointfour=8;
+            } else if(percentagemarkfour>=70 && percentagemarkfour<=79){
+                four = "B";
+                gradePointfour=7;
+            } else if(percentagemarkfour>=60 && percentagemarkfour<=69){
+                four = "C";
+                gradePointfour=6;
+            } else if(percentagemarkfour>=50 && percentagemarkfour<=59){
+                four = "D";
+                gradePointfour=5;
+            }else if(percentagemarkfour>=0 && percentagemarkfour<=49){
+                four = "F";
+                gradePointfour=0;
+            }
+            double average = (gradePointone + gradePointtwo + gradePointthree+gradePointfour)/(double)4;
+            average = Math.round(average*10)/(double)10;
+            report = studentName +"'s GPA of {" + gradePointone +" ("+one+"), "+gradePointtwo+" ("+two+"), "+gradePointthree+" ("+three+"), "+gradePointfour +" ("+four+")}: "+average;
+        }else if(finalList.length==5){
+            String one="";
+            String two="";
+            String three="";
+            String four="";
+            String five="";
+            int gradePointone=0;
+            int gradePointtwo=0;
+            int gradePointthree=0;
+            int gradePointfour=0;
+            int gradePointfive=0;
+            int percentagemarkone = finalList[0].getMarks();
+            int percentagemarktwo = finalList[1].getMarks();
+            int percentragemarkthree = finalList[2].getMarks();
+            int percentagemarkfour = finalList[3].getMarks();
+            int percentagemarkfive = finalList[4].getMarks();
+            if(percentagemarkone>=90 && percentagemarkone<=100){
+                one = "A+";
+                gradePointone=9;
+            }else if(percentagemarkone>=80 && percentagemarkone<=89){
+                one = "A";
+                gradePointone=8;
+            } else if(percentagemarkone>=70 && percentagemarkone<=79){
+                one = "B";
+                gradePointone=7;
+            } else if(percentagemarkone>=60 && percentagemarkone<=69){
+                one = "C";
+                gradePointone=6;
+            } else if(percentagemarkone>=50 && percentagemarkone<=59){
+                one = "D";
+                gradePointone=5;
+            }else if(percentagemarkone>=0 && percentagemarkone<=49){
+                one = "F";
+                gradePointone=0;
+            }
+            if(percentagemarktwo>=90 && percentagemarktwo<=100){
+                two = "A+";
+                gradePointtwo=9;
+            }else if(percentagemarktwo>=80 && percentagemarktwo<=89){
+                two = "A";
+                gradePointtwo=8;
+            } else if(percentagemarktwo>=70 && percentagemarktwo<=79){
+                two = "B";
+                gradePointtwo=7;
+            } else if(percentagemarktwo>=60 && percentagemarktwo<=69){
+                two = "C";
+                gradePointtwo=6;
+            } else if(percentagemarktwo>=50 && percentagemarktwo<=59){
+                two = "D";
+                gradePointtwo=5;
+            }else if(percentagemarktwo>=0 && percentagemarktwo<=49){
+                two = "F";
+                gradePointtwo=0;
+            }
+            if(percentragemarkthree>=90 && percentragemarkthree<=100){
+                three = "A+";
+                gradePointthree=9;
+            }else if(percentragemarkthree>=80 && percentragemarkthree<=89){
+                three = "A";
+                gradePointthree=8;
+            } else if(percentragemarkthree>=70 && percentragemarkthree<=79){
+                three = "B";
+                gradePointthree=7;
+            } else if(percentragemarkthree>=60 && percentragemarkthree<=69){
+                three = "C";
+                gradePointthree=6;
+            } else if(percentragemarkthree>=50 && percentragemarkthree<=59){
+                three = "D";
+                gradePointthree=5;
+            }else if(percentragemarkthree>=0 && percentragemarkthree<=49){
+                three = "F";
+                gradePointthree=0;
+            }
+            if(percentagemarkfour>=90 && percentagemarkfour<=100){
+                four = "A+";
+                gradePointfour=9;
+            }else if(percentagemarkfour>=80 && percentagemarkfour<=89){
+                four = "A";
+                gradePointfour=8;
+            } else if(percentagemarkfour>=70 && percentagemarkfour<=79){
+                four = "B";
+                gradePointfour=7;
+            } else if(percentagemarkfour>=60 && percentagemarkfour<=69){
+                four = "C";
+                gradePointfour=6;
+            } else if(percentagemarkfour>=50 && percentagemarkfour<=59){
+                four = "D";
+                gradePointfour=5;
+            }else if(percentagemarkfour>=0 && percentagemarkfour<=49){
+                four = "F";
+                gradePointfour=0;
+            }
+            if(percentagemarkfive>=90 && percentagemarkfive<=100){
+                five = "A+";
+                gradePointfive=9;
+            }else if(percentagemarkfive>=80 && percentagemarkfive<=89){
+                five = "A";
+                gradePointfive=8;
+            } else if(percentagemarkfive>=70 && percentagemarkfive<=79){
+                five = "B";
+                gradePointfive=7;
+            } else if(percentagemarkfive>=60 && percentagemarkfive<=69){
+                five = "C";
+                gradePointfive=6;
+            } else if(percentagemarkfive>=50 && percentagemarkfive<=59){
+                five = "D";
+                gradePointfive=5;
+            }else if(percentagemarkfive>=0 && percentagemarkfive<=49){
+                five = "F";
+                gradePointfive=0;
+            }
+            double average = (gradePointone + gradePointtwo + gradePointthree+gradePointfour+gradePointfive)/(double)5;
+            average = Math.round(average*10)/(double)10;
+            report = studentName +"'s GPA of {" + gradePointone +" ("+one+"), "+gradePointtwo+" ("+two+"), "+gradePointthree+" ("+three+"), "+gradePointfour +" ("+four+"), "+gradePointfive +" ("+five+")}: "+average;
+        }
+        return report;
+    }
+
+
+
+    public void addRegistration(Registration course) {
+        first = course;
+        if(numberOfRegistrations>4){
+            return;
+        }
+        registrationsListFive[numberOfRegistrations]=first;
+        numberOfRegistrations++;
+
+
+    }
+
+    public void addRegistration(String courseName) {
+      Registration a = new Registration(courseName);
+      addRegistration(a);
+    }
+
+
+
+    public void clearRegistrations() {
+        numberOfRegistrations=0;
+        registrationsListFive[0] = null;
+    }
+}
