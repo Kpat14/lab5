@@ -1,0 +1,77 @@
+package lab5;
+
+public class Registration {
+
+    private String title;
+    private int marks=0;
+    private String letterGrade;
+    private String description;
+    private Instructor instructor;
+
+    public Registration(String title) {
+        this.title = title;
+    }
+
+    public Registration(String title, Instructor instructor) {
+        this.title = title;
+        this.instructor = instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
+    }
+
+
+    public void setMarks(int i) {
+        this.marks = i;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public int getMarks() {
+        return this.marks;
+    }
+
+    public Instructor getInstructor() {
+        return this.instructor;
+    }
+
+    public String[] getGradeReport() {
+        if (this.marks <= 49){
+            this.letterGrade = "F";
+            this.description = "Failing";
+        }else if (50 < this.marks & this.marks <= 59){
+            this.letterGrade = "D";
+            this.description = "Passing";
+        }else if (60 < this.marks & this.marks <= 69){
+            this.letterGrade = "C";
+            this.description = "Competent";
+        }else if (70 < this.marks & this.marks <= 79){
+            this.letterGrade = "B";
+            this.description = "Good";
+        }else if (80 < this.marks & this.marks <= 89){
+            this.letterGrade = "A";
+            this.description = "Excellent";
+        }else if (90 < this.marks & this.marks <= 100){
+            this.letterGrade = "A+";
+            this.description = "Exceptional";
+        }
+        String[] gradeReport = new String[2];
+        gradeReport[0] = letterGrade;
+        gradeReport[1] = description;
+        return gradeReport;
+    }
+
+    public String getInformation() {
+        if (instructor == null){
+            return this.title +  " has not yet been assigned an instructor";
+        }else{
+            return String.format("%s, taught by %s, is completed with raw marks %d (%s ; %s)",title,instructor.getName(),marks,letterGrade, description);
+        }
+    }
+
+
+
+}
