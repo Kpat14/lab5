@@ -1,0 +1,44 @@
+package lab5;
+
+public class OnlineSchool {
+    // TODO: implement this class
+    private Participant[] participants={};
+    int numberOfParticipants=0;
+   Participant[] totalParticipants=new Participant[100];
+
+    public Participant[] getParticipants(String courseName) {
+        int correctTotalparticipants=0;
+        if(numberOfParticipants==0){
+            return participants;
+        }
+        for(int i=0;i<numberOfParticipants;i++){
+            for(int j=0;j<totalParticipants[i].getRegistrations().length;j++)
+            if(totalParticipants[i].getRegistrations()[j].getTitle().equals(courseName)){
+                correctTotalparticipants++;
+            }
+        }
+
+        Participant[] finalParticipants=new Participant[correctTotalparticipants];
+        int count=0;
+        for(int i=0;i<numberOfParticipants;i++){
+            for(int j=0;j<totalParticipants[i].getRegistrations().length;j++){
+                if(totalParticipants[i].getRegistrations()[j].getTitle().equals(courseName)){
+                    finalParticipants[count]=totalParticipants[i];
+                    count++;
+                }
+            }
+
+        }
+        return finalParticipants;
+    }
+
+
+    public void addParticipant(Participant name) {
+      totalParticipants[numberOfParticipants]=name;
+      if(numberOfParticipants==100){
+          return;
+      }
+      numberOfParticipants++;
+    }
+
+}
